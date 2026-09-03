@@ -2159,5 +2159,149 @@ lightbox.addEventListener("touchend", function(event) {
   <div class="lightbox-counter" id="lightboxCounter"></div>
 
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = document.getElementById("lightboxImage");
+  const closeButton = document.getElementById("lightboxClose");
+  const prevButton = document.getElementById("lightboxPrev");
+  const nextButton = document.getElementById("lightboxNext");
+  const counter = document.getElementById("lightboxCounter");
+
+  const photos = document.querySelectorAll(".photo-item img");
+
+  let currentPhoto = 0;
+
+
+  function showPhoto(index) {
+
+    currentPhoto = index;
+
+    lightboxImage.src = photos[currentPhoto].src;
+
+    counter.textContent =
+      (currentPhoto + 1) + " / " + photos.length;
+  }
+
+
+  function openLightbox(index) {
+
+    showPhoto(index);
+
+    lightbox.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+  }
+
+
+  function closeLightbox() {
+
+    lightbox.classList.remove("active");
+
+    document.body.style.overflow = "";
+  }
+
+
+  function nextPhoto() {
+
+    currentPhoto++;
+
+    if (currentPhoto >= photos.length) {
+      currentPhoto = 0;
+    }
+
+    showPhoto(currentPhoto);
+  }
+
+
+  function previousPhoto() {
+
+    currentPhoto--;
+
+    if (currentPhoto < 0) {
+      currentPhoto = photos.length - 1;
+    }
+
+    showPhoto(currentPhoto);
+  }
+
+
+  photos.forEach(function (photo, index) {
+
+    photo.addEventListener("click", function () {
+      openLightbox(index);
+    });
+
+  });
+
+
+  closeButton.addEventListener("click", closeLightbox);
+
+  nextButton.addEventListener("click", nextPhoto);
+
+  prevButton.addEventListener("click", previousPhoto);
+
+
+  lightbox.addEventListener("click", function (event) {
+
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+
+  });
+
+
+  document.addEventListener("keydown", function (event) {
+
+    if (!lightbox.classList.contains("active")) {
+      return;
+    }
+
+    if (event.key === "Escape") {
+      closeLightbox();
+    }
+
+    if (event.key === "ArrowRight") {
+      nextPhoto();
+    }
+
+    if (event.key === "ArrowLeft") {
+      previousPhoto();
+    }
+
+  });
+
+
+  let touchStartX = 0;
+
+  lightbox.addEventListener("touchstart", function (event) {
+
+    touchStartX = event.changedTouches[0].screenX;
+
+  });
+
+
+  lightbox.addEventListener("touchend", function (event) {
+
+    const touchEndX = event.changedTouches[0].screenX;
+
+    const difference = touchStartX - touchEndX;
+
+    if (Math.abs(difference) > 50) {
+
+      if (difference > 0) {
+        nextPhoto();
+      } else {
+        previousPhoto();
+      }
+
+    }
+
+  });
+
+});
+</script>
+  
 </body>
 </html>
