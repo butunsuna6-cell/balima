@@ -2380,7 +2380,24 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
+  const button = document.getElementById("surpriseButton");
+  const content = document.getElementById("surpriseContent");
+
+  button.addEventListener("click", function () {
+    content.classList.toggle("show");
+
+    if (content.classList.contains("show")) {
+      button.textContent = "Mesajımı Kapat ❤️";
+    } else {
+      button.textContent = "Mesajımı Aç ❤️";
+    }
+  });
+
+});
+</script>
 </body>
 </html>
   
