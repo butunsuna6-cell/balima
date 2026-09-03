@@ -2714,5 +2714,31 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 </script>
   
+<script>
+  const surpriseButton = document.getElementById("surpriseButton");
+const surpriseContent = document.getElementById("surpriseContent");
+
+if (surpriseButton && surpriseContent) {
+  surpriseButton.addEventListener("click", function () {
+    surpriseContent.classList.add("show");
+    surpriseButton.style.display = "none";
+  });
+}
+  });
+
+// SÜRPRİZ MESAJ BUTONU
+const surpriseButton = document.getElementById("surpriseButton");
+const surpriseContent = document.getElementById("surpriseContent");
+
+if (surpriseButton && surpriseContent) {
+  surpriseButton.addEventListener("click", function () {
+    surpriseContent.classList.add("show");
+    surpriseButton.style.display = "none";
+  });
+}
+
+</script>
+  
+</script>
 </body>
 </html>
