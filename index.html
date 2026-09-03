@@ -930,6 +930,56 @@
   }
 
 }
+
+    .music-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.music-card {
+  max-width: 650px;
+  margin: auto;
+  padding: 45px 30px;
+  background: rgba(80, 10, 25, 0.35);
+  border: 1px solid rgba(255, 120, 150, 0.25);
+  border-radius: 25px;
+  box-shadow: 0 0 35px rgba(120, 0, 40, 0.35);
+  backdrop-filter: blur(10px);
+}
+
+.music-icon {
+  font-size: 45px;
+  margin-bottom: 15px;
+  animation: musicPulse 2s infinite;
+}
+
+.music-card h2 {
+  color: #fff;
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.music-card p {
+  color: #d8bfc6;
+  line-height: 1.8;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.music-card audio {
+  width: 100%;
+  max-width: 500px;
+}
+
+@keyframes musicPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+}
     
   </style>
 </head>
