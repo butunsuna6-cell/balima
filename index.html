@@ -2152,366 +2152,10 @@
 
 </section>
 
-<!-- FOTOĞRAF LIGHTBOX -->
-  
-  <!-- FOTOĞRAF LIGHTBOX -->
 
-<div class="lightbox" id="lightbox">
-
-  <span class="lightbox-close" id="lightboxClose">&times;</span>
-
-  <button class="lightbox-prev" id="lightboxPrev">
-    &#10094;
-  </button>
-
-  <img class="lightbox-image" id="lightboxImage" src="" alt="Büyütülmüş fotoğraf">
-
-  <button class="lightbox-next" id="lightboxNext">
-    &#10095;
-  </button>
-  <div class="lightbox-caption" id="lightboxCaption"></div>
-  <div class="lightbox-counter" id="lightboxCounter"></div>
-  
-</div>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImage = document.getElementById("lightboxImage");
-  const closeButton = document.getElementById("lightboxClose");
-  const prevButton = document.getElementById("lightboxPrev");
-  const nextButton = document.getElementById("lightboxNext");
-  const counter = document.getElementById("lightboxCounter");
-
-  const photos = Array.from(
-    document.querySelectorAll(".photo-item img")
-  );
-
-  let currentPhoto = 0;
-
-
-  function getCaption(photo) {
-
-    const item = photo.closest(".photo-item");
-
-    if (!item) {
-      return "";
-    }
-
-    const captionElement =
-      item.querySelector(".photo-caption span") ||
-      item.querySelector(".photo-caption") ||
-      item.querySelector("p");
-
-    if (!captionElement) {
-      return "";
-    }
-
-    return captionElement.textContent.trim();
-  }
-
-
-  function showPhoto(index) {
-
-    currentPhoto = index;
-
-    const photo = photos[currentPhoto];
-
-    lightboxImage.src = photo.src;
-
-    const photoCaption = getCaption(photo);
-
-    // Açıklamayı göster
-    const captionElement =
-      document.getElementById("lightboxCaption");
-
-    if (captionElement) {
-      captionElement.textContent = photoCaption;
-    }
-
-    counter.textContent =
-      (currentPhoto + 1) + " / " + photos.length;
-  }
-
-
-  function openLightbox(index) {
-
-    showPhoto(index);
-
-    lightbox.classList.add("active");
-
-    document.body.style.overflow = "hidden";
-  }
-
-
-  function closeLightbox() {
-
-    lightbox.classList.remove("active");
-
-    document.body.style.overflow = "";
-  }
-
-
-  function nextPhoto() {
-
-    currentPhoto++;
-
-    if (currentPhoto >= photos.length) {
-      currentPhoto = 0;
-    }
-
-    showPhoto(currentPhoto);
-  }
-
-
-  function previousPhoto() {
-
-    currentPhoto--;
-
-    if (currentPhoto < 0) {
-      currentPhoto = photos.length - 1;
-    }
-
-    showPhoto(currentPhoto);
-  }
-
-
-  photos.forEach(function (photo, index) {
-
-    photo.addEventListener("click", function () {
-
-      openLightbox(index);
-
-    });
-
-  });
-
-
-  closeButton.addEventListener("click", closeLightbox);
-
-  nextButton.addEventListener("click", nextPhoto);
-
-  prevButton.addEventListener("click", previousPhoto);
-
-
-  lightbox.addEventListener("click", function (event) {
-
-    if (event.target === lightbox) {
-      closeLightbox();
-    }
-
-  });
-
-
-  document.addEventListener("keydown", function (event) {
-
-    if (!lightbox.classList.contains("active")) {
-      return;
-    }
-
-    if (event.key === "Escape") {
-      closeLightbox();
-    }
-
-    if (event.key === "ArrowRight") {
-      nextPhoto();
-    }
-
-    if (event.key === "ArrowLeft") {
-      previousPhoto();
-    }
-
-  });
-
-
-  let touchStartX = 0;
-
-  lightbox.addEventListener("touchstart", function (event) {
-
-    touchStartX = event.changedTouches[0].screenX;
-
-  });
-
-
-  lightbox.addEventListener("touchend", function (event) {
-
-    const touchEndX = event.changedTouches[0].screenX;
-
-    const difference = touchStartX - touchEndX;
-
-    if (Math.abs(difference) > 50) {
-
-      if (difference > 0) {
-        nextPhoto();
-      } else {
-        previousPhoto();
-      }
-
-    }
-
-  });
-
-});
-  
-/* =========================
-   FOTOĞRAF LIGHTBOX
-========================= */
-
-const lightbox = document.getElementById("lightbox");
-const lightboxImage = document.getElementById("lightboxImage");
-const lightboxClose = document.getElementById("lightboxClose");
-const lightboxPrev = document.getElementById("lightboxPrev");
-const lightboxNext = document.getElementById("lightboxNext");
-const lightboxCounter = document.getElementById("lightboxCounter");
-
-const galleryImages = Array.from(
-  document.querySelectorAll(".photo-item img")
-);
-
-let currentPhoto = 0;
-
-
-/* Fotoğrafı aç */
-function openLightbox(index) {
-
-  currentPhoto = index;
-
-  lightboxImage.src = galleryImages[currentPhoto].src;
-
-  lightboxCounter.textContent =
-    (currentPhoto + 1) + " / " + galleryImages.length;
-
-  lightbox.classList.add("active");
-
-  document.body.style.overflow = "hidden";
-}
-
-
-/* Fotoğrafı kapat */
-function closeLightbox() {
-
-  lightbox.classList.remove("active");
-
-  document.body.style.overflow = "";
-}
-
-
-/* Sonraki fotoğraf */
-function nextPhoto() {
-
-  currentPhoto++;
-
-  if (currentPhoto >= galleryImages.length) {
-    currentPhoto = 0;
-  }
-
-  lightboxImage.src = galleryImages[currentPhoto].src;
-
-  lightboxCounter.textContent =
-    (currentPhoto + 1) + " / " + galleryImages.length;
-}
-
-
-/* Önceki fotoğraf */
-function previousPhoto() {
-
-  currentPhoto--;
-
-  if (currentPhoto < 0) {
-    currentPhoto = galleryImages.length - 1;
-  }
-
-  lightboxImage.src = galleryImages[currentPhoto].src;
-
-  lightboxCounter.textContent =
-    (currentPhoto + 1) + " / " + galleryImages.length;
-}
-
-
-/* Her fotoğrafa tıklama */
-galleryImages.forEach((image, index) => {
-
-  image.addEventListener("click", function() {
-    openLightbox(index);
-  });
-
-});
-
-
-/* Butonlar */
-
-lightboxClose.addEventListener("click", closeLightbox);
-
-lightboxNext.addEventListener("click", nextPhoto);
-
-lightboxPrev.addEventListener("click", previousPhoto);
-
-
-/* Arka plana tıklayınca kapat */
-
-lightbox.addEventListener("click", function(event) {
-
-  if (event.target === lightbox) {
-    closeLightbox();
-  }
-
-});
-
-
-/* Klavye kontrolü */
-
-document.addEventListener("keydown", function(event) {
-
-  if (!lightbox.classList.contains("active")) {
-    return;
-  }
-
-  if (event.key === "Escape") {
-    closeLightbox();
-  }
-
-  if (event.key === "ArrowRight") {
-    nextPhoto();
-  }
-
-  if (event.key === "ArrowLeft") {
-    previousPhoto();
-  }
-
-});
-
-
-/* Tablet / telefon kaydırma */
-
-let touchStartX = 0;
-let touchEndX = 0;
-
-lightbox.addEventListener("touchstart", function(event) {
-
-  touchStartX = event.changedTouches[0].screenX;
-
-});
-
-
-lightbox.addEventListener("touchend", function(event) {
-
-  touchEndX = event.changedTouches[0].screenX;
-
-  const difference = touchStartX - touchEndX;
-
-  if (Math.abs(difference) > 50) {
-
-    if (difference > 0) {
-      nextPhoto();
-    } else {
-      previousPhoto();
-    }
-
-  }
-
-});
 </script>
-  <!-- FOTOĞRAF LIGHTBOX -->
+
+<!-- FOTOĞRAF LIGHTBOX -->
 
 <div class="lightbox" id="lightbox">
 
@@ -2527,6 +2171,7 @@ lightbox.addEventListener("touchend", function(event) {
     src=""
     alt="Büyütülmüş fotoğraf"
   >
+
   <div class="lightbox-caption" id="lightboxCaption"></div>
 
   <button class="lightbox-next" id="lightboxNext">
@@ -2536,10 +2181,15 @@ lightbox.addEventListener("touchend", function(event) {
   <div class="lightbox-counter" id="lightboxCounter"></div>
 
 </div>
-<script>
+
+
 <script>
 
 document.addEventListener("DOMContentLoaded", function () {
+
+  /* =========================
+     FOTOĞRAF LIGHTBOX
+  ========================= */
 
   const lightbox = document.getElementById("lightbox");
   const image = document.getElementById("lightboxImage");
@@ -2560,18 +2210,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const item = photo.closest(".photo-item");
 
-    if (!item) {
-      return "";
-    }
+    if (!item) return "";
 
     const captionElement =
       item.querySelector(".photo-caption span") ||
       item.querySelector(".photo-caption") ||
       item.querySelector("p");
 
-    if (!captionElement) {
-      return "";
-    }
+    if (!captionElement) return "";
 
     return captionElement.textContent.trim();
   }
@@ -2637,9 +2283,7 @@ document.addEventListener("DOMContentLoaded", function () {
   photos.forEach(function (photo, index) {
 
     photo.addEventListener("click", function () {
-
       openLightbox(index);
-
     });
 
   });
@@ -2709,36 +2353,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
   });
 
+
+  /* =========================
+     SÜRPRİZ MESAJ
+  ========================= */
+
+  const surpriseButton =
+    document.getElementById("surpriseButton");
+
+  const surpriseContent =
+    document.getElementById("surpriseContent");
+
+
+  if (surpriseButton && surpriseContent) {
+
+    surpriseButton.addEventListener("click", function () {
+
+      surpriseContent.classList.add("show");
+
+      surpriseButton.style.display = "none";
+
+    });
+
+  }
+
 });
 
 </script>
-</script>
+
+</body>
+</html>
   
-<script>
-  const surpriseButton = document.getElementById("surpriseButton");
-const surpriseContent = document.getElementById("surpriseContent");
-
-if (surpriseButton && surpriseContent) {
-  surpriseButton.addEventListener("click", function () {
-    surpriseContent.classList.add("show");
-    surpriseButton.style.display = "none";
-  });
-}
-  });
-
-// SÜRPRİZ MESAJ BUTONU
-const surpriseButton = document.getElementById("surpriseButton");
-const surpriseContent = document.getElementById("surpriseContent");
-
-if (surpriseButton && surpriseContent) {
-  surpriseButton.addEventListener("click", function () {
-    surpriseContent.classList.add("show");
-    surpriseButton.style.display = "none";
-  });
-}
-
-</script>
-  
-</script>
 </body>
 </html>
