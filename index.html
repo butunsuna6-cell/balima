@@ -5,593 +5,592 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Balım'a ❤️</title>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: Georgia, serif;
-  background: #080509;
-  color: #f8e9ed;
-  overflow-x: hidden;
-}
-
-/* =========================
-   ANA SAYFA - SİNEMATİK
-========================= */
-
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  padding: 40px 20px;
-
-  background:
-    radial-gradient(circle at 50% 40%, rgba(137, 20, 58, .35), transparent 35%),
-    radial-gradient(circle at 20% 80%, rgba(103, 10, 42, .28), transparent 30%),
-    linear-gradient(135deg, #050307, #180711 45%, #350c1d 100%);
-
-  color: white;
-}
-
-/* Üstte hafif ışık */
-
-.hero::before {
-  content: "";
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: rgba(173, 32, 76, .12);
-  filter: blur(90px);
-  animation: glow 5s ease-in-out infinite alternate;
-}
-
-/* İnce film çerçevesi */
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 18px;
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 18px;
-  pointer-events: none;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 5;
-  max-width: 700px;
-  animation: heroAppear 1.5s ease forwards;
-}
-
-.main-heart {
-  font-size: 82px;
-  margin-bottom: 25px;
-  filter: drop-shadow(0 0 25px rgba(255, 55, 105, .7));
-  animation: heartbeat 1.7s infinite;
-}
-
-.hero h1 {
-  font-size: 64px;
-  letter-spacing: 2px;
-  margin-bottom: 18px;
-  text-shadow: 0 0 30px rgba(255, 80, 120, .35);
-}
-
-.subtitle {
-  font-size: 22px;
-  font-style: italic;
-  color: #f4dce3;
-  margin-bottom: 22px;
-  opacity: .9;
-}
-
-.date {
-  font-size: 17px;
-  color: #e9b8c6;
-  letter-spacing: 1px;
-  margin-bottom: 38px;
-}
-
-.start-button {
-  display: inline-block;
-  background: rgba(255,255,255,.95);
-  color: #64152f;
-  text-decoration: none;
-  padding: 16px 42px;
-  border-radius: 50px;
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: .5px;
-
-  box-shadow:
-    0 10px 35px rgba(0,0,0,.5),
-    0 0 25px rgba(255, 72, 116, .18);
-
-  transition: .35s;
-}
-
-.start-button:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow:
-    0 15px 40px rgba(0,0,0,.55),
-    0 0 35px rgba(255, 72, 116, .35);
-}
-
-/* =========================
-   UÇAN KALPLER
-========================= */
-
-.floating-heart {
-  position: absolute;
-  bottom: -60px;
-  font-size: 25px;
-  animation: float 9s linear infinite;
-  opacity: 0;
-  filter: drop-shadow(0 0 8px rgba(255,60,110,.6));
-  z-index: 2;
-}
-
-.h1 {
-  left: 8%;
-  animation-delay: 0s;
-}
-
-.h2 {
-  left: 30%;
-  animation-delay: 2.5s;
-}
-
-.h3 {
-  left: 55%;
-  animation-delay: 5s;
-}
-
-.h4 {
-  left: 82%;
-  animation-delay: 1.5s;
-}
-
-/* =========================
-   HİKÂYEMİZ
-========================= */
-
-.story {
-  position: relative;
-  padding: 110px 20px;
-  background:
-    radial-gradient(circle at 50% 10%, rgba(118, 19, 50, .18), transparent 35%),
-    #080509;
-}
-
-/* Üst ve alt ışık */
-
-.story::before {
-  content: "";
-  display: block;
-  width: 90px;
-  height: 2px;
-  margin: 0 auto 35px;
-  background: #b82d58;
-  box-shadow: 0 0 18px rgba(207, 43, 91, .7);
-}
-
-.section-title {
-  text-align: center;
-  font-size: 44px;
-  color: #f5d9e1;
-  margin-bottom: 15px;
-  letter-spacing: 1px;
-  text-shadow: 0 0 25px rgba(190, 40, 85, .3);
-}
-
-.section-subtitle {
-  text-align: center;
-  font-size: 17px;
-  color: #bd8d9b;
-  margin-bottom: 75px;
-  font-style: italic;
-}
-
-/* =========================
-   TIMELINE
-========================= */
-
-.timeline {
-  max-width: 900px;
-  margin: auto;
-  position: relative;
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    #9d2349 8%,
-    #d44b72 50%,
-    #9d2349 92%,
-    transparent
-  );
-
-  transform: translateX(-50%);
-  box-shadow: 0 0 12px rgba(197, 39, 86, .45);
-}
-
-/* =========================
-   HİKÂYE KARTLARI
-========================= */
-
-.event {
-  width: 50%;
-  padding: 25px 42px;
-  position: relative;
-  opacity: 0;
-  transform: translateY(35px);
-  animation: appear 1s forwards;
-}
-
-.event:nth-child(1) {
-  animation-delay: .2s;
-}
-
-.event:nth-child(2) {
-  animation-delay: .4s;
-}
-
-.event:nth-child(3) {
-  animation-delay: .6s;
-}
-
-.event:nth-child(4) {
-  animation-delay: .8s;
-}
-
-.event:nth-child(5) {
-  animation-delay: 1s;
-}
-
-.event:nth-child(6) {
-  animation-delay: 1.2s;
-}
-
-.event:nth-child(odd) {
-  left: 0;
-  text-align: right;
-}
-
-.event:nth-child(even) {
-  left: 50%;
-  text-align: left;
-}
-
-/* Timeline noktaları */
-
-.event-dot {
-  position: absolute;
-  top: 36px;
-  width: 16px;
-  height: 16px;
-
-  background: #d13b65;
-  border: 3px solid #080509;
-  border-radius: 50%;
-
-  box-shadow:
-    0 0 0 1px #c33a60,
-    0 0 18px rgba(221, 50, 96, .8);
-}
-
-.event:nth-child(odd) .event-dot {
-  right: -8px;
-}
-
-.event:nth-child(even) .event-dot {
-  left: -8px;
-}
-
-/* Kart */
-
-.event-card {
-  position: relative;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(43, 12, 25, .96),
-      rgba(18, 7, 12, .97)
-    );
-
-  border: 1px solid rgba(205, 63, 98, .25);
-  padding: 30px;
-  border-radius: 4px;
-
-  box-shadow:
-    0 20px 45px rgba(0,0,0,.45),
-    inset 0 0 30px rgba(132, 20, 53, .06);
-
-  transition: .4s;
-}
-
-.event-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 55px;
-  height: 2px;
-  background: #c83962;
-  box-shadow: 0 0 12px rgba(213, 49, 94, .6);
-}
-
-.event:nth-child(odd) .event-card::before {
-  right: 25px;
-}
-
-.event:nth-child(even) .event-card::before {
-  left: 25px;
-}
-
-.event-card:hover {
-  transform: translateY(-7px);
-  border-color: rgba(220, 67, 105, .55);
-
-  box-shadow:
-    0 25px 55px rgba(0,0,0,.55),
-    0 0 25px rgba(147, 24, 59, .12);
-}
-
-.event-date {
-  color: #d75a7b;
-  font-weight: bold;
-  font-size: 15px;
-  margin-bottom: 12px;
-  letter-spacing: .5px;
-}
-
-.event h3 {
-  color: #f4dce3;
-  font-size: 25px;
-  margin-bottom: 15px;
-  line-height: 1.3;
-}
-
-.event p {
-  color: #d8c0c7;
-  line-height: 1.8;
-  font-size: 16px;
-}
-
-/* =========================
-   "BENİMSİN" ÖZEL GÖRÜNÜM
-========================= */
-
-.event-card strong {
-  color: #f16b91;
-  text-shadow: 0 0 15px rgba(241, 66, 117, .45);
-}
-
-/* =========================
-   İLK MESAJ FOTOĞRAFI
-========================= */
-
-.message-photo {
-  width: 100%;
-  max-width: 330px;
-
-  display: block;
-  margin: 22px auto 0;
-
-  padding: 7px;
-
-  background: #14070d;
-  border: 1px solid rgba(222, 77, 113, .45);
-
-  border-radius: 3px;
-
-  box-shadow:
-    0 15px 35px rgba(0,0,0,.5),
-    0 0 25px rgba(149, 24, 59, .18);
-
-  cursor: pointer;
-  transition: .4s;
-}
-
-.message-photo:hover {
-  transform: scale(1.025);
-  box-shadow:
-    0 18px 40px rgba(0,0,0,.6),
-    0 0 30px rgba(206, 43, 88, .3);
-}
-
-/* =========================
-   SON BÖLÜM
-========================= */
-
-.ending {
-  position: relative;
-  text-align: center;
-  padding: 120px 25px;
-
-  background:
-    radial-gradient(circle at 50% 30%, rgba(173, 31, 70, .28), transparent 38%),
-    linear-gradient(135deg, #080509, #2a0918, #10050b);
-
-  color: white;
-
-  border-top: 1px solid rgba(202, 49, 91, .2);
-}
-
-.ending::before {
-  content: "♥";
-  display: block;
-  font-size: 30px;
-  color: #c83a63;
-  margin-bottom: 25px;
-  text-shadow: 0 0 20px rgba(224, 51, 101, .7);
-}
-
-.ending h2 {
-  font-size: 40px;
-  margin-bottom: 25px;
-  color: #f6dce4;
-  text-shadow: 0 0 25px rgba(220, 55, 100, .3);
-}
-
-.ending p {
-  color: #d7b9c2;
-  font-size: 19px;
-  line-height: 2;
-}
-
-/* =========================
-   ANİMASYONLAR
-========================= */
-
-@keyframes heartbeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.14);
-  }
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0;
-  }
-
-  15% {
-    opacity: .7;
-  }
-
-  80% {
-    opacity: .4;
-  }
-
-  100% {
-    transform: translateY(-110vh) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-@keyframes appear {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes glow {
-  from {
-    transform: scale(.9);
-    opacity: .5;
-  }
-
-  to {
-    transform: scale(1.15);
-    opacity: 1;
-  }
-}
-
-@keyframes heroAppear {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* =========================
-   TELEFON / TABLET
-========================= */
-
-@media (max-width: 700px) {
-
-  .hero h1 {
-    font-size: 46px;
-  }
-
-  .subtitle {
-    font-size: 19px;
-  }
-
-  .main-heart {
-    font-size: 68px;
-  }
-
-  .section-title {
-    font-size: 34px;
-  }
-
-  .story {
-    padding: 80px 15px;
-  }
-
-  .timeline::before {
-    left: 16px;
-  }
-
-  .event,
-  .event:nth-child(even),
-  .event:nth-child(odd) {
-    width: 100%;
-    left: 0;
-    text-align: left;
-    padding-left: 45px;
-    padding-right: 3px;
-  }
-
-  .event:nth-child(odd) .event-dot,
-  .event:nth-child(even) .event-dot {
-    left: 8px;
-    right: auto;
-  }
-
-  .event-card {
-    padding: 24px 20px;
-  }
-
-  .event h3 {
-    font-size: 22px;
-  }
-
-  .event p {
-    font-size: 15px;
-  }
-
-  .ending h2 {
-    font-size: 32px;
-  }
-
-  .ending p {
-    font-size: 17px;
-  }
-}
-
-  
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Georgia, serif;
+      background: #080509;
+      color: #f8e9ed;
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       ANA SAYFA - SİNEMATİK
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 40px 20px;
+
+      background:
+        radial-gradient(circle at 50% 40%, rgba(137, 20, 58, .35), transparent 35%),
+        radial-gradient(circle at 20% 80%, rgba(103, 10, 42, .28), transparent 30%),
+        linear-gradient(135deg, #050307, #180711 45%, #350c1d 100%);
+
+      color: white;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(173, 32, 76, .12);
+      filter: blur(90px);
+      animation: glow 5s ease-in-out infinite alternate;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      max-width: 700px;
+      animation: heroAppear 1.5s ease forwards;
+    }
+
+    .main-heart {
+      font-size: 82px;
+      margin-bottom: 25px;
+      filter: drop-shadow(0 0 25px rgba(255, 55, 105, .7));
+      animation: heartbeat 1.7s infinite;
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+      text-shadow: 0 0 30px rgba(255, 80, 120, .35);
+    }
+
+    .subtitle {
+      font-size: 22px;
+      font-style: italic;
+      color: #f4dce3;
+      margin-bottom: 22px;
+      opacity: .9;
+    }
+
+    .date {
+      font-size: 17px;
+      color: #e9b8c6;
+      letter-spacing: 1px;
+      margin-bottom: 38px;
+    }
+
+    .start-button {
+      display: inline-block;
+      background: rgba(255,255,255,.95);
+      color: #64152f;
+      text-decoration: none;
+      padding: 16px 42px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: .5px;
+
+      box-shadow:
+        0 10px 35px rgba(0,0,0,.5),
+        0 0 25px rgba(255, 72, 116, .18);
+
+      transition: .35s;
+    }
+
+    .start-button:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow:
+        0 15px 40px rgba(0,0,0,.55),
+        0 0 35px rgba(255, 72, 116, .35);
+    }
+
+    /* =========================
+       UÇAN KALPLER
+    ========================= */
+
+    .floating-heart {
+      position: absolute;
+      bottom: -60px;
+      font-size: 25px;
+      animation: float 9s linear infinite;
+      opacity: 0;
+      filter: drop-shadow(0 0 8px rgba(255,60,110,.6));
+      z-index: 2;
+    }
+
+    .h1 {
+      left: 8%;
+      animation-delay: 0s;
+    }
+
+    .h2 {
+      left: 30%;
+      animation-delay: 2.5s;
+    }
+
+    .h3 {
+      left: 55%;
+      animation-delay: 5s;
+    }
+
+    .h4 {
+      left: 82%;
+      animation-delay: 1.5s;
+    }
+
+    /* =========================
+       HİKÂYEMİZ
+    ========================= */
+
+    .story {
+      position: relative;
+      padding: 110px 20px;
+
+      background:
+        radial-gradient(circle at 50% 10%, rgba(118, 19, 50, .18), transparent 35%),
+        #080509;
+    }
+
+    .story::before {
+      content: "";
+      display: block;
+      width: 90px;
+      height: 2px;
+      margin: 0 auto 35px;
+      background: #b82d58;
+      box-shadow: 0 0 18px rgba(207, 43, 91, .7);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 44px;
+      color: #f5d9e1;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 25px rgba(190, 40, 85, .3);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 17px;
+      color: #bd8d9b;
+      margin-bottom: 75px;
+      font-style: italic;
+    }
+
+    /* =========================
+       TIMELINE
+    ========================= */
+
+    .timeline {
+      max-width: 900px;
+      margin: auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        #9d2349 8%,
+        #d44b72 50%,
+        #9d2349 92%,
+        transparent
+      );
+
+      transform: translateX(-50%);
+      box-shadow: 0 0 12px rgba(197, 39, 86, .45);
+    }
+
+    /* =========================
+       HİKÂYE KARTLARI
+    ========================= */
+
+    .event {
+      width: 50%;
+      padding: 25px 42px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(35px);
+      animation: appear 1s forwards;
+    }
+
+    .event:nth-child(1) {
+      animation-delay: .2s;
+    }
+
+    .event:nth-child(2) {
+      animation-delay: .4s;
+    }
+
+    .event:nth-child(3) {
+      animation-delay: .6s;
+    }
+
+    .event:nth-child(4) {
+      animation-delay: .8s;
+    }
+
+    .event:nth-child(5) {
+      animation-delay: 1s;
+    }
+
+    .event:nth-child(6) {
+      animation-delay: 1.2s;
+    }
+
+    .event:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+
+    .event:nth-child(even) {
+      left: 50%;
+      text-align: left;
+    }
+
+    .event-dot {
+      position: absolute;
+      top: 36px;
+      width: 16px;
+      height: 16px;
+
+      background: #d13b65;
+      border: 3px solid #080509;
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 0 1px #c33a60,
+        0 0 18px rgba(221, 50, 96, .8);
+    }
+
+    .event:nth-child(odd) .event-dot {
+      right: -8px;
+    }
+
+    .event:nth-child(even) .event-dot {
+      left: -8px;
+    }
+
+    /* =========================
+       KARTLAR
+    ========================= */
+
+    .event-card {
+      position: relative;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(43, 12, 25, .96),
+          rgba(18, 7, 12, .97)
+        );
+
+      border: 1px solid rgba(205, 63, 98, .25);
+      padding: 30px;
+      border-radius: 4px;
+
+      box-shadow:
+        0 20px 45px rgba(0,0,0,.45),
+        inset 0 0 30px rgba(132, 20, 53, .06);
+
+      transition: .4s;
+    }
+
+    .event-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 55px;
+      height: 2px;
+      background: #c83962;
+      box-shadow: 0 0 12px rgba(213, 49, 94, .6);
+    }
+
+    .event:nth-child(odd) .event-card::before {
+      right: 25px;
+    }
+
+    .event:nth-child(even) .event-card::before {
+      left: 25px;
+    }
+
+    .event-card:hover {
+      transform: translateY(-7px);
+
+      border-color: rgba(220, 67, 105, .55);
+
+      box-shadow:
+        0 25px 55px rgba(0,0,0,.55),
+        0 0 25px rgba(147, 24, 59, .12);
+    }
+
+    .event-date {
+      color: #d75a7b;
+      font-weight: bold;
+      font-size: 15px;
+      margin-bottom: 12px;
+      letter-spacing: .5px;
+    }
+
+    .event h3 {
+      color: #f4dce3;
+      font-size: 25px;
+      margin-bottom: 15px;
+      line-height: 1.3;
+    }
+
+    .event p {
+      color: #d8c0c7;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* =========================
+       BENİMSİN
+    ========================= */
+
+    .event-card strong {
+      color: #f16b91;
+      text-shadow: 0 0 15px rgba(241, 66, 117, .45);
+    }
+
+    /* =========================
+       İLK MESAJ FOTOĞRAFI
+    ========================= */
+
+    .message-photo {
+      width: 100%;
+      max-width: 330px;
+
+      display: block;
+      margin: 22px auto 0;
+
+      padding: 7px;
+
+      background: #14070d;
+      border: 1px solid rgba(222, 77, 113, .45);
+
+      border-radius: 3px;
+
+      box-shadow:
+        0 15px 35px rgba(0,0,0,.5),
+        0 0 25px rgba(149, 24, 59, .18);
+
+      cursor: pointer;
+      transition: .4s;
+    }
+
+    .message-photo:hover {
+      transform: scale(1.025);
+
+      box-shadow:
+        0 18px 40px rgba(0,0,0,.6),
+        0 0 30px rgba(206, 43, 88, .3);
+    }
+
+    /* =========================
+       SON BÖLÜM
+    ========================= */
+
+    .ending {
+      position: relative;
+      text-align: center;
+      padding: 120px 25px;
+
+      background:
+        radial-gradient(circle at 50% 30%, rgba(173, 31, 70, .28), transparent 38%),
+        linear-gradient(135deg, #080509, #2a0918, #10050b);
+
+      color: white;
+
+      border-top: 1px solid rgba(202, 49, 91, .2);
+    }
+
+    .ending::before {
+      content: "♥";
+      display: block;
+      font-size: 30px;
+      color: #c83a63;
+      margin-bottom: 25px;
+      text-shadow: 0 0 20px rgba(224, 51, 101, .7);
+    }
+
+    .ending h2 {
+      font-size: 40px;
+      margin-bottom: 25px;
+      color: #f6dce4;
+      text-shadow: 0 0 25px rgba(220, 55, 100, .3);
+    }
+
+    .ending p {
+      color: #d7b9c2;
+      font-size: 19px;
+      line-height: 2;
+    }
+
+    /* =========================
+       ANİMASYONLAR
+    ========================= */
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.14);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: .7;
+      }
+
+      80% {
+        opacity: .4;
+      }
+
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes appear {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glow {
+      from {
+        transform: scale(.9);
+        opacity: .5;
+      }
+
+      to {
+        transform: scale(1.15);
+        opacity: 1;
+      }
+    }
+
+    @keyframes heroAppear {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+       TELEFON / TABLET
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      .hero h1 {
+        font-size: 46px;
+      }
+
+      .subtitle {
+        font-size: 19px;
+      }
+
+      .main-heart {
+        font-size: 68px;
+      }
+
+      .section-title {
+        font-size: 34px;
+      }
+
+      .story {
+        padding: 80px 15px;
+      }
+
+      .timeline::before {
+        left: 16px;
+      }
+
+      .event,
+      .event:nth-child(even),
+      .event:nth-child(odd) {
+        width: 100%;
+        left: 0;
+        text-align: left;
+        padding-left: 45px;
+        padding-right: 3px;
+      }
+
+      .event:nth-child(odd) .event-dot,
+      .event:nth-child(even) .event-dot {
+        left: 8px;
+        right: auto;
+      }
+
+      .event-card {
+        padding: 24px 20px;
+      }
+
+      .event h3 {
+        font-size: 22px;
+      }
+
+      .event p {
+        font-size: 15px;
+      }
+
+      .ending h2 {
+        font-size: 32px;
+      }
+
+      .ending p {
+        font-size: 17px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -629,217 +628,215 @@ body {
 
   <!-- HİKAYEMİZ -->
 
-<section class="story" id="hikayemiz">
+  <section class="story" id="hikayemiz">
 
-  <h2 class="section-title">
-    Bizim Hikâyemiz 💌
-  </h2>
+    <h2 class="section-title">
+      Bizim Hikâyemiz 💌
+    </h2>
 
-  <p class="section-subtitle">
-    Bazı hikâyeler bir mesajla başlar...❤️
-  </p>
+    <p class="section-subtitle">
+      Bazı hikâyeler bir mesajla başlar...❤️
+    </p>
 
-  <div class="timeline">
+    <div class="timeline">
 
-    <!-- 1 -->
+      <!-- 1 -->
 
-    <div class="event">
+      <div class="event">
 
-      <div class="event-dot"></div>
+        <div class="event-dot"></div>
 
-      <div class="event-card">
+        <div class="event-card">
 
-        <div class="event-date">
-          Her şey bir istekle başladı... 📱
+          <div class="event-date">
+            Her şey bir istekle başladı... 📱
+          </div>
+
+          <h3>İlk Adım ❤️</h3>
+
+          <p>
+            Her şey senin bana Instagram'dan istek atmanla başladı.Takipleştik ve farkında olmadan birbirimizin hayatına küçük bir adım atmış olduk.
+          </p>
+
         </div>
 
-        <h3>İlk Adım ❤️</h3>
+      </div>
 
-        <p>
-          Her şey senin bana Instagram'dan istek atmanla başladı.Takipleştik ve farkında olmadan birbirimizin hayatına küçük bir adım atmış olduk.
-        </p>
+
+      <!-- 2 -->
+
+      <div class="event">
+
+        <div class="event-dot"></div>
+
+        <div class="event-card">
+
+          <div class="event-date">
+            21 Kasım 2024 💬
+          </div>
+
+          <h3>İlk Mesajımız</h3>
+
+          <p>
+            Bana Instagram'dan ilk mesajını attın.
+            Ve bizim hikâyemiz böyle başladı. ❤️
+          </p>
+
+          <img
+            src="./ilkmesaj.jpg"
+            alt="Enes ile ilk mesajlaşmamız"
+            class="message-photo"
+          >
+
+          <p style="font-size:14px; margin-top:10px; opacity:.7;">
+            Hikâyemizin başladığı ilk mesajlar... 🥹
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- 3 -->
+
+      <div class="event">
+
+        <div class="event-dot"></div>
+
+        <div class="event-card">
+
+          <div class="event-date">
+            4 Aralık 2024 ☕
+          </div>
+
+          <h3>İlk Kez Yüz Yüze</h3>
+
+          <p>
+            Ve birbirimizi ilk defa gördüğümüz o özel güne geldik. Sen Umuttepe'ye geldin.
+            O gün hava yağmurluydu.
+            Sen o günden sonraki her buluşmalarımızda olduğu gibi benden önce gelmiştin ve beni bekliyordun.
+            İlk göz göze gelişimiz hala dün gibi hatırımda.
+            <br><br>
+
+            <strong>Pure Black</strong> kafede ilk defa yüz yüze görüştük.
+            İlk buluşmamız bol sohbetli geçti.
+            Biraz çekingen, biraz heyecanlıydık...
+            Ama çok güzeldi. ❤️
+            <br><br>
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- 4 -->
+
+      <div class="event">
+
+        <div class="event-dot"></div>
+
+        <div class="event-card">
+
+          <div class="event-date">
+            İlk buluşmadan kalan tatlı bir anı 👛
+          </div>
+
+          <h3>Cüzdanını Unuttuğun Gün 😂</h3>
+
+          <p>
+            İlk buluşmamızın sonunda cüzdanını kafede unutmuştun.
+            Ertesi sabah geri gelip cüzdanını aldın.
+            Küçük bir detay gibi görünse de bizim hikâyemizin en tatlı anılarından biri oldu. ❤️
+            <br><br>
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- 5 -->
+
+      <div class="event">
+
+        <div class="event-dot"></div>
+
+        <div class="event-card">
+
+          <div class="event-date">
+            15 Ocak 2025 ❤️
+          </div>
+
+          <h3>Biz Olduk</h3>
+
+          <p>
+            Bu tarihe kadar her görüşmemiz bir öncekinden daha güzel daha sıcak olmaya başladı.
+            Önce birbirimize arkadaş dost olduk. Birbirimizi hep en iyi şekilde anladık dinledik.
+            Tabii daha sonra ufak ufak flörtlerimiz başlamıştı. İlk sahilde yürüyüşümüzü hatırlıyor musun?
+            O gün ilk defa koluna girip yürümüştüm. O kadar mutluyduk ki...
+            Vee daha sonra yine bir gün Umuttepe'de Colombia'da oturup sohbet ederken sen bir anda beni öptün ve...
+            <br><br>
+
+            <strong style="font-size:22px;">
+              “Benimsin.” dedin. ❤️
+            </strong>
+
+            <br><br>
+
+            Belki klasik bir teklifi değildi... belki bir teklif bile değildi :) ama bizim hikâyemizin en güzel anlarından biriydi.
+            O günden beri birlikte hep çok eğlendik, hâlâ da eğleniyoruz. 🥹❤️
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- 6 -->
+
+      <div class="event">
+
+        <div class="event-dot"></div>
+
+        <div class="event-card">
+
+          <div class="event-date">
+            15.01.2025'ten beri ❤️
+          </div>
+
+          <h3>Ve Hikâyemiz Devam Ediyor...</h3>
+
+          <p>
+            Sevgili olduğumuz günden beri birlikte hep çok eğlendik,
+            çok güzel anılar biriktirdik ve hâlâ birlikte eğleniyoruz.
+            <br><br>
+
+            Ve bunun bir sonu yok...
+            Çünkü bizim hikâyemiz hâlâ devam ediyor. 🥹❤️
+          </p>
+
+        </div>
 
       </div>
 
     </div>
 
+  </section>
 
-    <!-- 2 -->
+  <!-- ŞİMDİLİK SON -->
 
-    <div class="event">
+  <section class="ending">
 
-      <div class="event-dot"></div>
+    <h2>Bu daha başlangıç... ❤️</h2>
 
-      <div class="event-card">
+    <p>
+      Daha anlatacak çok hikâyemiz,<br>
+      biriktirecek çok anımız,<br>
+      yaşayacak çok güzel günümüz var. 🥹❤️
+    </p>
 
-        <div class="event-date">
-          21 Kasım 2024 💬
-        </div>
-
-        <h3>İlk Mesajımız</h3>
-
-        <p>
-          Bana Instagram'dan ilk mesajını attın.
-         Ve bizim hikâyemiz böyle başladı. ❤️
-        </p>
-
-        <img
-          src="./ilkmesaj.jpg"
-          alt="Enes ile ilk mesajlaşmamız"
-          class="message-photo"
-        >
-
-        <p style="font-size:14px; margin-top:10px; opacity:.7;">
-          Hikâyemizin başladığı ilk mesajlar... 🥹
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <!-- 3 -->
-
-    <div class="event">
-
-      <div class="event-dot"></div>
-
-      <div class="event-card">
-
-        <div class="event-date">
-          4 Aralık 2024 ☕
-        </div>
-
-        <h3>İlk Kez Yüz Yüze</h3>
-
-        <p>
-           Ve birbirimizi ilk defa gördüğümüz o özel güne geldik. Sen Umuttepe'ye geldin.
-           O gün hava yağmurluydu.
-           Sen o günden sonraki her buluşmalarımızda olduğu gibi benden önce gelmiştin ve beni bekliyordun.
-           İlk göz göze gelişimiz hala dün gibi hatırımda.
-          <br><br>
-
-          <strong>Pure Black</strong> kafede ilk defa yüz yüze görüştük.
-          İlk buluşmamız bol sohbetli geçti.
-          Biraz çekingen, biraz heyecanlıydık...
-          Ama çok güzeldi. ❤️
-          <br><br>
-          
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <!-- 4 -->
-
-    <div class="event">
-
-      <div class="event-dot"></div>
-
-      <div class="event-card">
-
-        <div class="event-date">
-          İlk buluşmadan kalan tatlı bir anı 👛
-        </div>
-
-        <h3>Cüzdanını Unuttuğun Gün 😂</h3>
-
-        <p>
-         İlk buluşmamızın sonunda cüzdanını kafede unutmuştun.
-         Ertesi sabah geri gelip cüzdanını aldın.
-         Küçük bir detay gibi görünse de bizim hikâyemizin en tatlı anılarından biri oldu. ❤️
-          <br><br>
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <!-- 5 -->
-
-    <div class="event">
-
-      <div class="event-dot"></div>
-
-      <div class="event-card">
-
-        <div class="event-date">
-           15 Ocak 2025 ❤️
-        </div>
-
-        <h3>Biz Olduk</h3>
-<p>
- Bu tarihe kadar her görüşmemiz bir öncekinden daha güzel daha sıcak olmaya başladı.
- Önce birbirimize arkadaş dost olduk. Birbirimizi hep en iyi şekilde anladık dinledik.
- Tabii daha sonra ufak ufak flörtlerimiz başlamıştı. İlk sahilde yürüyüşümüzü hatırlıyor musun?
- O gün ilk defa koluna girip yürümüştüm. O kadar mutluyduk ki...
- Vee daha sonra yine bir gün Umuttepe'de Colombia'da oturup sohbet ederken sen bir anda beni öptün ve...
- <br><br>
-
-<strong style="font-size:22px;">
- “Benimsin.” dedin. ❤️
- </strong>
-
-<br><br>
-
- Belki klasik bir teklifi değildi... belki bir teklif bile değildi :) ama bizim hikâyemizin en güzel anlarından biriydi.
- O günden beri birlikte hep çok eğlendik, hâlâ da eğleniyoruz. 🥹❤️
- </p>
-
-      </div>
-
-    </div>
-
-
-    <!-- 6 -->
-
-    <div class="event">
-
-      <div class="event-dot"></div>
-
-      <div class="event-card">
-
-        <div class="event-date">
-          15.01.2025'ten beri ❤️
-        </div>
-
-        <h3>Ve Hikâyemiz Devam Ediyor...</h3>
-
-        <p>
-          Sevgili olduğumuz günden beri birlikte hep çok eğlendik,
-          çok güzel anılar biriktirdik ve hâlâ birlikte eğleniyoruz.
-          <br><br>
-
-          Aslında bu timeline'ın sonu yok...
-          Çünkü bizim hikâyemiz hâlâ devam ediyor. 🥹❤️
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- ŞİMDİLİK SON -->
-
-<section class="ending">
-
-  <h2>Bu daha başlangıç... ❤️</h2>
-
-  <p>
-    Daha anlatacak çok hikâyemiz,<br>
-    biriktirecek çok anımız,<br>
-    yaşayacak çok güzel günümüz var. 🥹❤️
-  </p>
-
-</section>
-
-
+  </section>
 
 </body>
 </html>
