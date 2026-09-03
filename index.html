@@ -748,7 +748,188 @@
 
 }
 
+/* =========================
+   FOTOĞRAF GALERİSİ
+========================= */
 
+.gallery {
+  position: relative;
+  padding: 110px 20px;
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(140, 25, 65, .22),
+      transparent 45%
+    ),
+    #080509;
+  overflow: hidden;
+}
+
+.gallery-intro {
+  max-width: 650px;
+  margin: 0 auto 65px;
+  text-align: center;
+}
+
+.gallery-symbol {
+  font-size: 30px;
+  color: #e05a82;
+  margin-bottom: 15px;
+  text-shadow: 0 0 20px rgba(225, 70, 115, .7);
+}
+
+.gallery-intro h2 {
+  font-size: 44px;
+  color: #f4d8e0;
+  margin-bottom: 18px;
+  text-shadow: 0 0 25px rgba(220, 55, 105, .3);
+}
+
+.gallery-intro p {
+  color: #c8aab4;
+  font-size: 17px;
+  line-height: 1.8;
+  font-style: italic;
+}
+
+
+/* FOTOĞRAFLAR */
+
+.photo-grid {
+  max-width: 1050px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.photo-item {
+  position: relative;
+  overflow: hidden;
+
+  background: #160a10;
+
+  border: 1px solid rgba(220, 65, 105, .25);
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.5),
+    0 0 25px rgba(130, 20, 55, .08);
+
+  transition: .45s;
+}
+
+.photo-item img {
+  width: 100%;
+  height: 330px;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition: .6s;
+}
+
+.photo-item:hover {
+  transform: translateY(-7px);
+
+  border-color: rgba(230, 75, 115, .65);
+
+  box-shadow:
+    0 25px 45px rgba(0,0,0,.6),
+    0 0 30px rgba(180, 35, 80, .2);
+}
+
+.photo-item:hover img {
+  transform: scale(1.06);
+}
+
+
+/* FOTOĞRAF YAZISI */
+
+.photo-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 35px 18px 18px;
+
+  background:
+    linear-gradient(
+      transparent,
+      rgba(5, 2, 4, .95)
+    );
+
+  color: #f5dce4;
+
+  font-size: 15px;
+
+  opacity: 0;
+
+  transform: translateY(10px);
+
+  transition: .4s;
+}
+
+.photo-item:hover .photo-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* GALERİ SONU */
+
+.gallery-ending {
+  text-align: center;
+  margin-top: 70px;
+}
+
+.gallery-ending p {
+  color: #dc7895;
+  font-size: 20px;
+  font-style: italic;
+
+  text-shadow:
+    0 0 15px rgba(220, 60, 100, .3);
+}
+
+
+/* TELEFON */
+
+@media (max-width: 700px) {
+
+  .gallery {
+    padding: 80px 18px;
+  }
+
+  .gallery-intro h2 {
+    font-size: 34px;
+  }
+
+  .gallery-intro p {
+    font-size: 16px;
+  }
+
+  .photo-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .photo-item img {
+    height: 380px;
+  }
+
+  .photo-caption {
+    opacity: 1;
+    transform: none;
+  }
+
+  .gallery-ending {
+    margin-top: 50px;
+  }
+
+}
     
   </style>
 </head>
@@ -1152,7 +1333,7 @@
       </div>
     </div>
       <div class="photo-item">
-      <img src="./foto10.jpg" alt="Bizim fotoğrafımız">
+      <img src="./foto10.jpeg" alt="Bizim fotoğrafımız">
       <div class="photo-caption">
         <span> Hep böyle... En huzurlu yerde...❤️ </span>
       </div>
