@@ -1230,7 +1230,111 @@
   }
 
 }
-    
+    /* SÜRPRİZ MESAJ */
+.surprise-message {
+  width: 100%;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.surprise-box {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 50px 30px;
+  background: linear-gradient(145deg, #16070b, #2a0b14);
+  border: 1px solid rgba(255, 105, 135, 0.35);
+  border-radius: 25px;
+  box-shadow: 0 0 35px rgba(120, 20, 50, 0.35);
+}
+
+.surprise-small {
+  color: #d9a0ad;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.surprise-box h2 {
+  color: white;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.surpriseButton {
+  background: #8f2947;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#surpriseButton {
+  background: #8f2947;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#surpriseButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 100, 140, 0.4);
+}
+
+.surprise-content {
+  display: none;
+  margin-top: 35px;
+  color: #f5e8eb;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.surprise-content.show {
+  display: block;
+  animation: surpriseFade 1s ease;
+}
+
+.surprise-content h3 {
+  color: #ff9ab3;
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+.surprise-final {
+  color: #ffb0c3;
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+@keyframes surpriseFade {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 700px) {
+  .surprise-box {
+    padding: 40px 20px;
+  }
+
+  .surprise-box h2 {
+    font-size: 24px;
+  }
+
+  .surprise-content {
+    font-size: 16px;
+  }
+}
   </style>
 </head>
 
@@ -1993,6 +2097,63 @@
     </p>
 
   </section>
+</section>
+
+<!-- SÜRPRİZ MESAJ -->
+<section class="surprise-message">
+
+  <div class="surprise-box">
+
+    <p class="surprise-small">Enes'e küçük bir not... ❤️</p>
+
+    <h2>Bir şey söylemek istiyorum...</h2>
+
+    <button id="surpriseButton">Mesajımı Aç ❤️</button>
+
+    <div class="surprise-content" id="surpriseContent">
+
+      <h3>Enes...</h3>
+
+      <p>
+        Bütün bu fotoğraflara, anılara ve geçen zamana baktığımda
+        aslında tek bir şeyi görüyorum...
+      </p>
+
+      <p>
+        Seninle geçirdiğim her anın ne kadar kıymetli olduğunu. ❤️
+      </p>
+
+      <p>
+        İyi ki o gün bana mesaj atmışsın.<br>
+        İyi ki tanışıp birbirimizi sevmişiz.<br>
+        İyi ki yollarımız kesişmiş.
+      </p>
+
+      <p>
+        İlk karşılaşmamızdan, ilk yürüyüşümüze,
+        birlikte güldüğümüz ve çocuklaştığımız onca ana kadar...
+        Hepsini kalbimin en güzel yerinde taşıyorum.
+      </p>
+
+      <p>
+        Ve biliyorum ki bizim hikâyemiz burada bitmiyor.
+        Daha birlikte yaşayacağımız,
+        göreceğimiz ve biriktireceğimiz çok güzel anımız var.
+      </p>
+
+      <p class="surprise-final">
+        İyi ki benimlesin sevgilim.<br>
+        Seni çok seviyorum. ❤️
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOTOĞRAF LIGHTBOX -->
+  
   <!-- FOTOĞRAF LIGHTBOX -->
 
 <div class="lightbox" id="lightbox">
