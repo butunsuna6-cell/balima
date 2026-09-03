@@ -2000,11 +2000,190 @@
   <button class="lightbox-next" id="lightboxNext">
     &#10095;
   </button>
-
+  <div class="lightbox-caption" id="lightboxCaption"></div>
   <div class="lightbox-counter" id="lightboxCounter"></div>
-
+  
 </div>
 <script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = document.getElementById("lightboxImage");
+  const closeButton = document.getElementById("lightboxClose");
+  const prevButton = document.getElementById("lightboxPrev");
+  const nextButton = document.getElementById("lightboxNext");
+  const counter = document.getElementById("lightboxCounter");
+
+  const photos = Array.from(
+    document.querySelectorAll(".photo-item img")
+  );
+
+  let currentPhoto = 0;
+
+
+  function getCaption(photo) {
+
+    const item = photo.closest(".photo-item");
+
+    if (!item) {
+      return "";
+    }
+
+    const captionElement =
+      item.querySelector(".photo-caption span") ||
+      item.querySelector(".photo-caption") ||
+      item.querySelector("p");
+
+    if (!captionElement) {
+      return "";
+    }
+
+    return captionElement.textContent.trim();
+  }
+
+
+  function showPhoto(index) {
+
+    currentPhoto = index;
+
+    const photo = photos[currentPhoto];
+
+    lightboxImage.src = photo.src;
+
+    const photoCaption = getCaption(photo);
+
+    // Açıklamayı göster
+    const captionElement =
+      document.getElementById("lightboxCaption");
+
+    if (captionElement) {
+      captionElement.textContent = photoCaption;
+    }
+
+    counter.textContent =
+      (currentPhoto + 1) + " / " + photos.length;
+  }
+
+
+  function openLightbox(index) {
+
+    showPhoto(index);
+
+    lightbox.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+  }
+
+
+  function closeLightbox() {
+
+    lightbox.classList.remove("active");
+
+    document.body.style.overflow = "";
+  }
+
+
+  function nextPhoto() {
+
+    currentPhoto++;
+
+    if (currentPhoto >= photos.length) {
+      currentPhoto = 0;
+    }
+
+    showPhoto(currentPhoto);
+  }
+
+
+  function previousPhoto() {
+
+    currentPhoto--;
+
+    if (currentPhoto < 0) {
+      currentPhoto = photos.length - 1;
+    }
+
+    showPhoto(currentPhoto);
+  }
+
+
+  photos.forEach(function (photo, index) {
+
+    photo.addEventListener("click", function () {
+
+      openLightbox(index);
+
+    });
+
+  });
+
+
+  closeButton.addEventListener("click", closeLightbox);
+
+  nextButton.addEventListener("click", nextPhoto);
+
+  prevButton.addEventListener("click", previousPhoto);
+
+
+  lightbox.addEventListener("click", function (event) {
+
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+
+  });
+
+
+  document.addEventListener("keydown", function (event) {
+
+    if (!lightbox.classList.contains("active")) {
+      return;
+    }
+
+    if (event.key === "Escape") {
+      closeLightbox();
+    }
+
+    if (event.key === "ArrowRight") {
+      nextPhoto();
+    }
+
+    if (event.key === "ArrowLeft") {
+      previousPhoto();
+    }
+
+  });
+
+
+  let touchStartX = 0;
+
+  lightbox.addEventListener("touchstart", function (event) {
+
+    touchStartX = event.changedTouches[0].screenX;
+
+  });
+
+
+  lightbox.addEventListener("touchend", function (event) {
+
+    const touchEndX = event.changedTouches[0].screenX;
+
+    const difference = touchStartX - touchEndX;
+
+    if (Math.abs(difference) > 50) {
+
+      if (difference > 0) {
+        nextPhoto();
+      } else {
+        previousPhoto();
+      }
+
+    }
+
+  });
+
+});
+  
 /* =========================
    FOTOĞRAF LIGHTBOX
 ========================= */
@@ -2189,30 +2368,58 @@ lightbox.addEventListener("touchend", function(event) {
 
 </div>
 <script>
+<script>
+
 document.addEventListener("DOMContentLoaded", function () {
 
   const lightbox = document.getElementById("lightbox");
-  const lightboxImage = document.getElementById("lightboxImage");
-  const closeButton = document.getElementById("lightboxClose");
-  const prevButton = document.getElementById("lightboxPrev");
-  const nextButton = document.getElementById("lightboxNext");
-  const counter = document.getElementById("lightboxCounter");
+  const image = document.getElementById("lightboxImage");
   const caption = document.getElementById("lightboxCaption");
-  const photos = document.querySelectorAll(".photo-item img");
+  const close = document.getElementById("lightboxClose");
+  const previous = document.getElementById("lightboxPrev");
+  const next = document.getElementById("lightboxNext");
+  const counter = document.getElementById("lightboxCounter");
 
-  let currentPhoto = 0;
+  const photos = Array.from(
+    document.querySelectorAll(".photo-item img")
+  );
+
+  let currentIndex = 0;
+
+
+  function getCaption(photo) {
+
+    const item = photo.closest(".photo-item");
+
+    if (!item) {
+      return "";
+    }
+
+    const captionElement =
+      item.querySelector(".photo-caption span") ||
+      item.querySelector(".photo-caption") ||
+      item.querySelector("p");
+
+    if (!captionElement) {
+      return "";
+    }
+
+    return captionElement.textContent.trim();
+  }
 
 
   function showPhoto(index) {
 
-    currentPhoto = index;
+    currentIndex = index;
 
-    lightboxImage.src = photos[currentPhoto].src;
-    caption.textContent =
-  photos[currentPhoto].closest(".photo-item").querySelector(".photo-caption span, p").textContent;
+    const photo = photos[currentIndex];
+
+    image.src = photo.src;
+
+    caption.textContent = getCaption(photo);
 
     counter.textContent =
-      (currentPhoto + 1) + " / " + photos.length;
+      (currentIndex + 1) + " / " + photos.length;
   }
 
 
@@ -2236,42 +2443,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function nextPhoto() {
 
-    currentPhoto++;
+    currentIndex++;
 
-    if (currentPhoto >= photos.length) {
-      currentPhoto = 0;
+    if (currentIndex >= photos.length) {
+      currentIndex = 0;
     }
 
-    showPhoto(currentPhoto);
+    showPhoto(currentIndex);
   }
 
 
   function previousPhoto() {
 
-    currentPhoto--;
+    currentIndex--;
 
-    if (currentPhoto < 0) {
-      currentPhoto = photos.length - 1;
+    if (currentIndex < 0) {
+      currentIndex = photos.length - 1;
     }
 
-    showPhoto(currentPhoto);
+    showPhoto(currentIndex);
   }
 
 
   photos.forEach(function (photo, index) {
 
     photo.addEventListener("click", function () {
+
       openLightbox(index);
+
     });
 
   });
 
 
-  closeButton.addEventListener("click", closeLightbox);
+  close.addEventListener("click", closeLightbox);
 
-  nextButton.addEventListener("click", nextPhoto);
+  next.addEventListener("click", nextPhoto);
 
-  prevButton.addEventListener("click", previousPhoto);
+  previous.addEventListener("click", previousPhoto);
 
 
   lightbox.addEventListener("click", function (event) {
@@ -2304,20 +2513,20 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-  let touchStartX = 0;
+  let startX = 0;
 
   lightbox.addEventListener("touchstart", function (event) {
 
-    touchStartX = event.changedTouches[0].screenX;
+    startX = event.changedTouches[0].screenX;
 
   });
 
 
   lightbox.addEventListener("touchend", function (event) {
 
-    const touchEndX = event.changedTouches[0].screenX;
+    const endX = event.changedTouches[0].screenX;
 
-    const difference = touchStartX - touchEndX;
+    const difference = startX - endX;
 
     if (Math.abs(difference) > 50) {
 
@@ -2332,6 +2541,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+
+</script>
 </script>
   
 </body>
