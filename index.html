@@ -1043,7 +1043,145 @@
     font-size: 30px;
   }
 }
-    
+    /* =========================
+   FOTOĞRAF LIGHTBOX
+========================= */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.94);
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox-image {
+  max-width: 90vw;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 28px;
+  color: white;
+  font-size: 42px;
+  font-weight: 300;
+  cursor: pointer;
+  z-index: 10001;
+  line-height: 1;
+  transition: 0.2s;
+}
+
+.lightbox-close:hover {
+  transform: scale(1.15);
+}
+
+.lightbox-prev,
+.lightbox-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55px;
+  height: 55px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  font-size: 34px;
+  cursor: pointer;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.25s;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.lightbox-prev {
+  left: 25px;
+}
+
+.lightbox-next {
+  right: 25px;
+}
+
+.lightbox-counter {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  letter-spacing: 1px;
+  z-index: 10001;
+}
+
+/* Fotoğraflara tıklanabilir görünüm */
+.photo-item img {
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.photo-item img:hover {
+  transform: scale(1.02);
+  filter: brightness(1.08);
+}
+
+/* Tablet / telefon */
+@media (max-width: 700px) {
+
+  .lightbox {
+    padding: 15px;
+  }
+
+  .lightbox-image {
+    max-width: 94vw;
+    max-height: 78vh;
+    border-radius: 8px;
+  }
+
+  .lightbox-close {
+    top: 12px;
+    right: 18px;
+    font-size: 36px;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    width: 45px;
+    height: 45px;
+    font-size: 28px;
+  }
+
+  .lightbox-prev {
+    left: 10px;
+  }
+
+  .lightbox-next {
+    right: 10px;
+  }
+
+}
   </style>
 </head>
 
@@ -1783,7 +1921,7 @@
     <span>Ve birlikte daha çok yaşanacak hikâyemiz, gezecek yerlerimiz var... ❤️</span>
   </div>
 </div>
-
+ <p></p>
 
   <div class="gallery-ending">
     <p>
@@ -1806,6 +1944,184 @@
     </p>
 
   </section>
+  <!-- FOTOĞRAF LIGHTBOX -->
 
+<div class="lightbox" id="lightbox">
+
+  <span class="lightbox-close" id="lightboxClose">&times;</span>
+
+  <button class="lightbox-prev" id="lightboxPrev">
+    &#10094;
+  </button>
+
+  <img class="lightbox-image" id="lightboxImage" src="" alt="Büyütülmüş fotoğraf">
+
+  <button class="lightbox-next" id="lightboxNext">
+    &#10095;
+  </button>
+
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+
+</div>
+<script>
+/* =========================
+   FOTOĞRAF LIGHTBOX
+========================= */
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const lightboxClose = document.getElementById("lightboxClose");
+const lightboxPrev = document.getElementById("lightboxPrev");
+const lightboxNext = document.getElementById("lightboxNext");
+const lightboxCounter = document.getElementById("lightboxCounter");
+
+const galleryImages = Array.from(
+  document.querySelectorAll(".photo-item img")
+);
+
+let currentPhoto = 0;
+
+
+/* Fotoğrafı aç */
+function openLightbox(index) {
+
+  currentPhoto = index;
+
+  lightboxImage.src = galleryImages[currentPhoto].src;
+
+  lightboxCounter.textContent =
+    (currentPhoto + 1) + " / " + galleryImages.length;
+
+  lightbox.classList.add("active");
+
+  document.body.style.overflow = "hidden";
+}
+
+
+/* Fotoğrafı kapat */
+function closeLightbox() {
+
+  lightbox.classList.remove("active");
+
+  document.body.style.overflow = "";
+}
+
+
+/* Sonraki fotoğraf */
+function nextPhoto() {
+
+  currentPhoto++;
+
+  if (currentPhoto >= galleryImages.length) {
+    currentPhoto = 0;
+  }
+
+  lightboxImage.src = galleryImages[currentPhoto].src;
+
+  lightboxCounter.textContent =
+    (currentPhoto + 1) + " / " + galleryImages.length;
+}
+
+
+/* Önceki fotoğraf */
+function previousPhoto() {
+
+  currentPhoto--;
+
+  if (currentPhoto < 0) {
+    currentPhoto = galleryImages.length - 1;
+  }
+
+  lightboxImage.src = galleryImages[currentPhoto].src;
+
+  lightboxCounter.textContent =
+    (currentPhoto + 1) + " / " + galleryImages.length;
+}
+
+
+/* Her fotoğrafa tıklama */
+galleryImages.forEach((image, index) => {
+
+  image.addEventListener("click", function() {
+    openLightbox(index);
+  });
+
+});
+
+
+/* Butonlar */
+
+lightboxClose.addEventListener("click", closeLightbox);
+
+lightboxNext.addEventListener("click", nextPhoto);
+
+lightboxPrev.addEventListener("click", previousPhoto);
+
+
+/* Arka plana tıklayınca kapat */
+
+lightbox.addEventListener("click", function(event) {
+
+  if (event.target === lightbox) {
+    closeLightbox();
+  }
+
+});
+
+
+/* Klavye kontrolü */
+
+document.addEventListener("keydown", function(event) {
+
+  if (!lightbox.classList.contains("active")) {
+    return;
+  }
+
+  if (event.key === "Escape") {
+    closeLightbox();
+  }
+
+  if (event.key === "ArrowRight") {
+    nextPhoto();
+  }
+
+  if (event.key === "ArrowLeft") {
+    previousPhoto();
+  }
+
+});
+
+
+/* Tablet / telefon kaydırma */
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+lightbox.addEventListener("touchstart", function(event) {
+
+  touchStartX = event.changedTouches[0].screenX;
+
+});
+
+
+lightbox.addEventListener("touchend", function(event) {
+
+  touchEndX = event.changedTouches[0].screenX;
+
+  const difference = touchStartX - touchEndX;
+
+  if (Math.abs(difference) > 50) {
+
+    if (difference > 0) {
+      nextPhoto();
+    } else {
+      previousPhoto();
+    }
+
+  }
+
+});
+</script>
+  
 </body>
 </html>
