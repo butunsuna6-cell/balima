@@ -1182,6 +1182,19 @@
   }
 
 }
+    .gallery-ending {
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin: 70px auto 0;
+}
+
+.gallery-ending p {
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  text-align: center;
+}
   </style>
 </head>
 
@@ -2122,6 +2135,29 @@ lightbox.addEventListener("touchend", function(event) {
 
 });
 </script>
-  
+  <!-- FOTOĞRAF LIGHTBOX -->
+
+<div class="lightbox" id="lightbox">
+
+  <span class="lightbox-close" id="lightboxClose">&times;</span>
+
+  <button class="lightbox-prev" id="lightboxPrev">
+    &#10094;
+  </button>
+
+  <img
+    class="lightbox-image"
+    id="lightboxImage"
+    src=""
+    alt="Büyütülmüş fotoğraf"
+  >
+
+  <button class="lightbox-next" id="lightboxNext">
+    &#10095;
+  </button>
+
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+
+</div>
 </body>
 </html>
