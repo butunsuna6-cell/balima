@@ -1344,11 +1344,99 @@
   max-height: 1000px !important;
   margin-top: 30px;
 }
+    /* ŞİFRE EKRANI */
+#passwordScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #080306;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.password-box {
+  width: 100%;
+  max-width: 500px;
+  padding: 50px 30px;
+  text-align: center;
+  background: linear-gradient(145deg, #16070b, #2a0b14);
+  border: 1px solid rgba(255, 105, 135, 0.35);
+  border-radius: 25px;
+  box-shadow: 0 0 40px rgba(120, 20, 50, 0.4);
+}
+
+.password-box .lock {
+  font-size: 45px;
+  margin-bottom: 20px;
+}
+
+.password-box h2 {
+  color: white;
+  font-size: 27px;
+  margin-bottom: 12px;
+}
+
+.password-box p {
+  color: #d9a0ad;
+  margin-bottom: 25px;
+}
+
+#passwordInput {
+  width: 100%;
+  padding: 15px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 105, 135, 0.4);
+  background: #100509;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 15px;
+}
+
+.password-box button {
+  background: #8f2947;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#passwordError {
+  color: #ff8da8;
+  margin-top: 15px;
+  margin-bottom: 0;
+}
   </style>
 </head>
 
 <body>
+<!-- ŞİFRE EKRANI -->
+<div id="passwordScreen">
+  <div class="password-box">
+    <div class="lock">🔐</div>
 
+    <h2>Bu site sadece sana özel...</h2>
+
+    <p>Şifreyi gir sevgilim ❤️</p>
+
+    <input
+      type="password"
+      id="passwordInput"
+      placeholder="Şifreni gir"
+    >
+
+    <button onclick="checkPassword()">
+      Giriş Yap 🔓
+    </button>
+
+    <p id="passwordError"></p>
+  </div>
+</div>
   <!-- ANA SAYFA -->
 
   <section class="hero">
@@ -1922,7 +2010,6 @@
     <span>Aileymiş gibi hissettiren fotoğrafımız...🥹❤️</span>
   </div>
 </div>
-
 <div class="photo-item">
   <img src="./foto12_13.jpg" alt="Bizim fotoğrafımız">
   <div class="photo-caption">
@@ -2137,6 +2224,7 @@
       <p>
         İyi ki o gün bana mesaj atmışsın.<br>
         İyi ki tanışıp birbirimizi sevmişiz.<br>
+         İyi ki doğdun hayatım .<br>
         İyi ki yollarımız kesişmiş.
       </p>
 
@@ -2391,7 +2479,19 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
+<script>
+function checkPassword() {
+  const password = document.getElementById("passwordInput").value;
+  const screen = document.getElementById("passwordScreen");
+  const error = document.getElementById("passwordError");
 
+  if (password === "15012025") {
+    screen.style.display = "none";
+  } else {
+    error.textContent = "Şifre yanlış sevgilim ❤️";
+  }
+}
+</script>
 </body>
 </html>
   
